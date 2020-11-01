@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+.button_styles {
+    border-style: solid;
+    padding: 5px;
+    border-radius: 1rem;
+    margin-bottom: 10px;
+    color:#ffa7c4;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .button_styles:hover {
+    color: black;
+  }
+  
+  @media (max-width: 550px) {
+    .button_styles {
+      margin-bottom: 0.5rem;
+    }
+  }
