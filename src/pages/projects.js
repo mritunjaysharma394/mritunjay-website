@@ -136,17 +136,15 @@ export default ({ children, ...props }) => {
           </Row>
           <footer
     css={css({
-      mt: 4,
+      mt: 6,
       pt: 3,
+      boxSizing:"border-box",
+      display: `flex`,
+      flexDirection: [`column`, `column`, `row`],
+      justifyContent: `space-between`,
     })}
   >
     © {new Date().getFullYear()} {author}
-    &emsp; &emsp;
-    &emsp; &emsp;
-    &emsp; &emsp; 
-    &emsp; &emsp;
-    &emsp; &emsp;
-
     {social
       ? social.map((platform, i, arr) => (
           <Fragment key={platform.url}>
