@@ -4,9 +4,9 @@ import { Container, Row, Col } from "react-bootstrap"
 import ProjectCard from "../components/portProjectCard/ProjectCard"
 import "./projects.css"
 
-import project1Picture from "./cake.png"
-import project2Picture from "./brown.png"
-import project3Picture from "./game.png"
+import project1Picture from "./SedPy.png"
+import project2Picture from "./github-actions.jpg"
+import project3Picture from "./autoyapf-1.png"
 
 /*######### PROJECT OBJECTS TEMPLATE################
 import projectPicture from ""
@@ -36,34 +36,34 @@ import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 
 const project1 = {
-  title: "Cool React app",
-  date: "2019-03-28",
+  title: "Sedpy",
+  date: "2020-08-18",
   decription:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia quaerat enim amet voluptatum, aut quisquam a, veritatis dolores odit adipisci corrupti tenetur optio. Aliquam incidunt dolor laborum tempore officia obcaecati.",
-  sourceURL: "https://github.com",
-  hostedURL: "http://www.google.com",
+    "sedpy is an open-source project being built as a cross-platform alternative of sed for easier and more flexible stream line editing across BSD and GNU systems",
+  sourceURL: "https://github.com/mritunjaysharma394/sedpy",
+  hostedURL: "https://pypi.org/project/sedpy/",
 }
 
 //Project 2
 
 const project2 = {
-  title: "Project 2 title",
-  date: "2019-03-03",
+  title: "Automating Image Classification with Microsoft Azure Custom Vision Training and Prediction",
+  date: "2020-09-17",
   decription:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia quaerat enim amet voluptatum, aut quisquam a, veritatis dolores odit adipisci corrupti tenetur optio. Aliquam incidunt dolor laborum tempore officia obcaecati.",
-  sourceURL: "https://github.com/",
-  hostedURL: "https://www.google.com",
+    "A low-code/no-code Image Classifier GitHub Action which uses Microsoft Azure Custom Vision Services. It gives user the ability to train and publish Image Classification Model without writing a single line of python code by just pushing the image data-set and workflow file in the GitHub repository.",
+  sourceURL: "https://github.com/mritunjaysharma394/autoCustomVision",
+  hostedURL: "https://github.com/marketplace/actions/automating-image-classification-with-microsoft-azure-custom-vision-training-and-prediction",
 }
 
 //Project 3
 
 const project3 = {
-  title: "Project 3 title",
-  date: "2019-02-12",
+  title: "Autoyapf",
+  date: "2020-08-31",
   decription:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia quaerat enim amet voluptatum, aut quisquam a, veritatis dolores odit adipisci corrupti tenetur optio. Aliquam incidunt dolor laborum tempore officia obcaecati.",
-  sourceURL: "https://github.com/",
-  hostedURL: "https://www.google.com",
+    "autoyapf is a GitHub action for yapf, an open-source tool that automatically formats Python code to conform to the PEP 8 style guide.",
+  sourceURL: "https://github.com/mritunjaysharma394/autoyapf",
+  hostedURL: "https://github.com/marketplace/actions/autoyapf",
 }
 
 export default ({ children, ...props }) => {
