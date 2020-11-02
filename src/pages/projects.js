@@ -139,7 +139,7 @@ export default ({ children, ...props }) => {
       mt: 4,
       pt: 3,
       display: `flex`,
-      flexDirection: [`column`, `row`],
+      flexDirection: [`row`],
       justifyContent: `space-between`,
     })}
   >
