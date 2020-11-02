@@ -136,11 +136,10 @@ export default ({ children, ...props }) => {
           </Row>
           <footer
     css={css({
-      mt: 6,
+      mt: 4,
       pt: 3,
-      boxSizing:"border-box",
       display: `flex`,
-      flexDirection: [`column`, `column`, `row`],
+      flexDirection: [`column`, `row`],
       justifyContent: `space-between`,
     })}
   >
@@ -157,7 +156,7 @@ export default ({ children, ...props }) => {
             </Styled.a>
             {arr.length - 1 !== i && (
               <Fragment>
-                {` `}&bull;{` `}
+                &bull;
               </Fragment>
             )}
           </Fragment>
