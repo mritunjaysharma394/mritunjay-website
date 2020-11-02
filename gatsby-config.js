@@ -10,7 +10,7 @@ const path = require(`path`)
 module.exports = {
   siteMetadata: {
     title: `Mritunjay Sharma`,
-    description: `I write blogs and poems and sometimes I code, create a bug and solve and then create another :)`,
+    description: `Personal Blog by Mritunjay Sharma`,
     author: `Mritunjay Sharma`,
     menuLinks: [
       {
