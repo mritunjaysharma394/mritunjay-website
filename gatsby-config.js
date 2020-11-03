@@ -72,9 +72,11 @@ module.exports = {
         name: `Mritunjay Sharma`,
         short_name: `Mritunjay`,
         start_url: `/`,
+        display: `minimal-ui`,
         icon: 'src/images/icon.png',
       },
     },
+    `gatsby-plugin-react-helmet`,
     `@pauliescanlon/gatsby-mdx-embed`,
   ],
 }
