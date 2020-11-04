@@ -1,0 +1,158 @@
+---
+title: Notes on Bit Manipulation
+date: 2020-11-04
+---
+
+## Basics
+* C++ type int is a 32-bit type, which means that every int number consists of 32 bits
+
+* Below is a reminder of basic use of all bit wise operators.
+```c
+
+// C Program to demonstrate use of bitwise operators 
+#include <stdio.h> 
+int main() 
+{ 
+    // a = 5(00000101), b = 9(00001001) 
+    unsigned char a = 5, b = 9; 
+  
+    // The result is 00000001 
+    printf("a = %d, b = %d\n", a, b); 
+    printf("a&b = %d\n", a & b); 
+  
+    // The result is 00001101 
+    printf("a|b = %d\n", a | b); 
+  
+    // The result is 00001100 
+    printf("a^b = %d\n", a ^ b); 
+  
+    // The result is 11111010 
+    printf("~a = %d\n", a = ~a); 
+  
+    // The result is 00010010 
+    printf("b<<1 = %d\n", b << 1); 
+  
+    // The result is 00000100 
+    printf("b>>1 = %d\n", b >> 1); 
+  
+    return 0; 
+} 
+```
+
+Output:
+
+```
+a = 5, b = 9
+a&b = 1
+a|b = 13
+a^b = 12
+~a = 250
+b<<1 = 18
+b>>1 = 4
+
+```
+
+* The left shift and right shift operators
+should not be used for negative numbers.
+also, `1<<33` is undefined if integers are stored using 32 bits.
+
+* The **bitwise XOR** is the most important for technical interviews.
+E.g. Find the only number that is occuring odd mumber of times problem.
+
+* The **& operator can be used to quickly check if a number is odd
+or even**. How? See this case, an odd number in its binary form
+will also have 1 in its LSB (Least Signifcant Bit). This means
+if x if odd then `x&1` will always return non-zero number.
+**Like 101 & 001 = 001, while 100 & 001 = 0 and so on.**
+
+* **Setting** a bit means that if K-th bit is 0, then set it to 1 and if it is 1 then leave it unchanged.
+* **Clearing** a bit means that if K-th bit is 1, then clear it to 0 and if it is 0 then leave it unchanged.
+* **Toggling** a bit means that if K-th bit is 1, then change it to 0 and if it is 0 then change it to 1.
+
+For more reference on the above three, check [here](https://stackoverflow.com/questions/47981/how-do-you-set-clear-and-toggle-a-single-bit).
+
+## Bit Tricks that I didn't know till yet
+
+* Upper Case English aplhabets to lower case:
+
+```c
+ch |= ' ';
+//Output a
+/*
+Logic:
+A -> 01000001          a -> 01100001
+B -> 01000010          b -> 01100010
+C -> 01000011          c -> 01100011
+
+As we can see if we set 5th bit of upper case characters, 
+it will be converted into lower case character. 
+We have to prepare a mask having 5th bit 1 and other 0 (00100000). This 
+mask is bit representation of space character (‘ ‘). 
+The character ‘ch’ then ORed with mask.
+
+Example-
+ch = ‘A’ (01000001)
+mask = ‘ ‘ (00100000)
+ch | mask = ‘a’ (01100001)
+*/
+```
+
+* Lower to Upper Case:
+
+```c
+
+ch |= '_';
+
+/* Same logic as  in the previous, just the difference 
+that we have to mask here with `10111111` which
+corresponds to underscore.
+*/
+```
+* Count set bits in an integer (i.e number of 1s in binary):
+    * **Brian Kernighan's Algorithm**:
+    ```cpp
+    #include <iostream>
+    using namespace std;
+    class csb {
+        public:
+            unsigned int countSetBits(int n)
+            {
+                unsigned int count = 0;
+                while(n) {
+                    n &= (n-1);
+                    count++
+                }
+                return count;
+            }
+        };
+        int main();
+        {
+            csb g;
+            int i = 9;
+            cout << g.countSetBits(i);
+            return 0;
+        }
+
+    ```
+    Explaination:
+   n =  9 (1001)
+   count = 0
+
+   Since 9 > 0, subtract by 1 and do bitwise & with (9-1)
+   n = 9&8  (1001 & 1000)
+   n = 8
+   count  = 1
+
+   Since 8 > 0, subtract by 1 and do bitwise & with (8-1)
+   n = 8&7  (1000 & 0111)
+   n = 0
+   count = 2
+
+   Since n = 0, return count which is 2 now.
+
+   Complexity: O(logn)
+
+   * **Lookup Table Approach**: Still have to understand but has
+    O(1) Complexity. Reference can be found [here](http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetTable)
+
+Rest of the things I learned from [here](https://github.com/ankitpriyarup/Coding_Notes/blob/master/bit-manipulation.md)
