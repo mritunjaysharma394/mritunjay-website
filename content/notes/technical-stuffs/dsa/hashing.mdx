@@ -1,0 +1,96 @@
+---
+title: Notes on Hashing
+date: 2020-11-04
+---
+
+### Few basic things that I might forget later.
+
+* Hash Table is basically an array of linked lists while STL Maps (in C++) is an Implementation
+of self-balancing red-black tree.
+
+* Load Factor and Rehashing: Load factor = Size of hashmap (n)/number of buckets (b). Load factor should normally be
+kept less than 0.75. Rehashing is done when complexity increases (l.f>0.75)
+so the size of array(buckets) is doubled and all the values are hashed again.
+
+### C++ Implementation of Hashing with chainging
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class Hash
+{
+    int Bucket; //no of buckets
+
+    list<int> *table;
+    public:
+        Hash( int V); //this is a constructor
+
+        void insertItem(int x);
+
+        void deleteItem(int key);
+
+        int hashFunction(int x {
+            return (x % Bucket);
+        }
+        void display Hash();
+};
+
+Hash::Hash(int b)
+{
+    this->Bucket = b;
+    table = new list<int>[Bucket];
+}
+
+void Hash::insertItem(int key)
+{
+    int index = hashFunction(key);
+    table[index].push_back(key);
+}
+
+void Hash::deleteItem(int key)
+{
+    int index hashFunction(key);
+
+    list<int> :: iterator i;
+    for(i = table[index].begin(); i!=table[index].end(); i++) {
+        if(*i == key){
+            break;
+        }
+    }
+
+    if(i != table[index].end()){
+        table[index].erase(i);
+    }
+}
+
+void Hash::displayHash() {
+    for(int i = 0; i<Bucket; i++) {
+        cout<<i;
+        for(auto x: table[i])
+        {
+         cout<< " -->" << x;
+        }
+        cout<<endl;
+    }
+
+}
+
+int main()
+{
+    int a[] = {15, 11, 27, 8, 12};
+    int n = sizeof(a)/sizeof(a[0]);
+
+    Hash h(7);
+
+    for ( int i = 0; i<n; i++) {
+        h.insertItem(a[i]);
+
+        h.deleteItem(12);
+
+        h.displayHash();
+
+        return 0;
+    }
+}
+```
