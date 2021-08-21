@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         name: `Resume`,
-        url: `https://drive.google.com/file/d/16FkaAlD_FDrcDoN0Jrb49V2prLH6uLki/view?usp=sharing`
+        url: `https://drive.google.com/file/d/1BZka9bn2xQY-N2GQAOGjoERwKhAaxn1X/view?usp=sharing`
       }
     ],
     social: [
