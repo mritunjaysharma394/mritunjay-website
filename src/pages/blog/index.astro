@@ -8,50 +8,122 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <Base
   title="Writing — Mritunjay Sharma"
-  description="Technical writing on cloud-native security, Kubernetes, open source, and AI systems."
+  description="Technical writing on cloud-native security, Kubernetes, open source, and AI."
 >
-  <div class="max-w-3xl mx-auto px-6 py-14">
-    <div class="mb-12">
-      <h1 class="text-2xl font-bold text-ink mb-2">Writing</h1>
-      <p class="text-muted text-sm">
-        Notes on cloud-native security, Kubernetes, open source, and AI.
-      </p>
-    </div>
+  <div class="wrap">
+    <header class="page-header">
+      <h1>Writing</h1>
+      <p class="subtitle">Notes on cloud-native security, Kubernetes, and AI systems.</p>
+    </header>
 
-    <div class="space-y-8">
+    <div class="post-list">
       {posts.map(post => (
-        <article>
-          <a href={`/blog/${post.slug}`} class="group block">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <h2 class="font-semibold text-ink group-hover:text-accent transition-colors leading-snug mb-1">
-                  {post.data.title}
-                </h2>
-                {post.data.excerpt && (
-                  <p class="text-sm text-muted leading-relaxed">{post.data.excerpt}</p>
-                )}
-                {post.data.tags && post.data.tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5 mt-2">
-                    {post.data.tags.map(tag => (
-                      <span class="tag">{tag}</span>
-                    ))}
-                  </div>
-                )}
+        <a href={`/blog/${post.slug}`} class="post-row hover-row">
+          <div class="post-left">
+            <p class="post-title">{post.data.title}</p>
+            {post.data.excerpt && (
+              <p class="post-excerpt">{post.data.excerpt}</p>
+            )}
+            {post.data.tags && post.data.tags.length > 0 && (
+              <div class="tag-row">
+                {post.data.tags.map(t => <span class="tag">{t}</span>)}
               </div>
-              <time
-                datetime={post.data.date.toISOString()}
-                class="text-xs text-muted flex-shrink-0 mt-0.5"
-              >
-                {post.data.date.toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
-              </time>
-            </div>
-          </a>
-        </article>
+            )}
+          </div>
+          <time datetime={post.data.date.toISOString()} class="post-date">
+            {post.data.date.toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })}
+          </time>
+        </a>
       ))}
     </div>
   </div>
 </Base>
+
+<style>
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .page-header {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .post-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.25rem 0.75rem 1.25rem 0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    margin-left: -0.875rem;
+  }
+
+  .post-row:last-child { border-bottom: none; }
+
+  .post-left { flex: 1; }
+
+  .post-title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0 0 0.375rem;
+    line-height: 1.45;
+    transition: color 0.15s;
+  }
+
+  .post-row:hover .post-title { color: var(--accent); }
+
+  .post-excerpt {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin: 0 0 0.6rem;
+    line-height: 1.6;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .post-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    padding-top: 0.25rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+</style>

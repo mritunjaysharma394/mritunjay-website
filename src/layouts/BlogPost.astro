@@ -18,28 +18,143 @@ const formatted = date.toLocaleDateString('en-US', {
 ---
 
 <Base title={`${title} — Mritunjay Sharma`} description={excerpt}>
-  <article class="max-w-3xl mx-auto px-6 py-14">
-    <div class="mb-10">
-      <a href="/blog" class="text-xs text-muted hover:text-ink transition-colors flex items-center gap-1 mb-8">
-        ← All writing
-      </a>
-      <h1 class="text-2xl font-bold text-ink leading-snug mb-3">{title}</h1>
-      <div class="flex items-center gap-3 flex-wrap">
-        <time datetime={date.toISOString()} class="text-sm text-muted">{formatted}</time>
-        {tags?.map(tag => (
-          <span class="tag">{tag}</span>
-        ))}
+  <article class="post-wrap">
+    <div class="post-header">
+      <a href="/blog" class="back-link">← Writing</a>
+
+      <h1>{title}</h1>
+
+      <div class="meta">
+        <time datetime={date.toISOString()}>{formatted}</time>
+        {tags?.map(tag => <span class="tag">{tag}</span>)}
       </div>
     </div>
 
-    <div class="prose prose-gray max-w-none
-      prose-headings:font-semibold prose-headings:text-ink
-      prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-      prose-code:font-mono prose-code:text-sm
-      prose-pre:bg-gray-950 prose-pre:text-gray-100
-      prose-img:rounded-lg
-      prose-blockquote:border-accent prose-blockquote:text-muted">
+    <div class="prose prose-neutral max-w-none post-body">
       <slot />
+    </div>
+
+    <div class="post-footer">
+      <a href="/blog" class="back-link">← Back to writing</a>
     </div>
   </article>
 </Base>
+
+<style>
+  .post-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .back-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .post-header {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .post-header .back-link {
+    display: block;
+    margin-bottom: 1.75rem;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+  }
+
+  .post-body {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text);
+  }
+
+  .post-footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Override prose for our theme colors */
+  :global(.post-body h1),
+  :global(.post-body h2),
+  :global(.post-body h3),
+  :global(.post-body h4) {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  :global(.post-body a) {
+    color: var(--accent);
+    text-underline-offset: 2px;
+  }
+
+  :global(.post-body a:hover) { color: var(--accent-hover); }
+
+  :global(.post-body blockquote) {
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  :global(.post-body pre) {
+    background: var(--bg-subtle) !important;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8125rem;
+  }
+
+  :global(.post-body code:not(pre code)) {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.15em 0.4em;
+    font-size: 0.85em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  :global(.post-body img) {
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  :global(.post-body hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+</style>

@@ -5,83 +5,88 @@ import { experience } from '../data/experience';
 
 <Base
   title="About — Mritunjay Sharma"
-  description="Senior Software Engineer at Chainguard working on AI systems and container security. CNCF contributor, KubeCon speaker, two-time Google Summer of Code alum."
+  description="Senior Software Engineer at Chainguard. CNCF contributor, KubeCon speaker, two-time Google Summer of Code alum."
 >
-  <div class="max-w-3xl mx-auto px-6 py-14">
-    <div class="mb-12">
-      <h1 class="text-2xl font-bold text-ink mb-2">About</h1>
-    </div>
+  <div class="wrap">
+    <header class="page-header">
+      <h1>About</h1>
+    </header>
 
     <!-- Bio -->
-    <section class="mb-14 prose prose-gray prose-sm max-w-none">
+    <section class="bio-section">
       <p>
-        I'm a Senior Software Engineer working at the intersection of <strong>AI systems and container security</strong>. At <a href="https://chainguard.dev" target="_blank" rel="noopener">Chainguard</a>, I co-architect an agentic AI orchestration platform that automates 70% of secure package creation across a 2000+ image catalog. Before that, I built the foundational FIPS/secure container images that became Chainguard's core product — scaled from fewer than 50 to 500+ images in 14 months as part of a small team.
+        I'm a Senior Software Engineer working at the intersection of <strong>AI systems and
+        container security</strong>. At <a class="a-link" href="https://chainguard.dev" target="_blank" rel="noopener">Chainguard</a>,
+        I co-architect an agentic AI orchestration platform that automates 70% of secure package
+        creation across a 2000+ image catalog. Before that, I built the foundational FIPS/secure
+        container images that became Chainguard's core product — scaling from fewer than 50 to
+        500+ images in 14 months as part of a small team.
       </p>
       <p>
-        I'm a two-time <strong>Google Summer of Code</strong> alum (CNCF 2021, RTEMS 2020), <strong>KubeCon speaker</strong> (8 talks across KubeCon EU/NA 2021–2024), and CNCF contributor with <a href="https://link.springer.com/chapter/10.1007/978-981-19-5292-0_29" target="_blank" rel="noopener">published research</a> on Kubernetes policy CRDs.
+        I'm a two-time <strong>Google Summer of Code</strong> alum (CNCF 2021, RTEMS 2020),
+        <strong>KubeCon speaker</strong> (8 talks across EU/NA 2021–2024), and CNCF contributor
+        with <a class="a-link" href="https://link.springer.com/chapter/10.1007/978-981-19-5292-0_29" target="_blank" rel="noopener">published
+        research</a> on Kubernetes policy CRDs.
       </p>
       <p>
-        Outside of work, I'm passionate about building AI projects, contributing to open source, and exploring how AI systems can be made more robust and reliable.
+        Outside of work, I'm passionate about building AI projects, contributing to open source,
+        and exploring how AI systems can be made more robust and reliable.
       </p>
     </section>
+
+    <hr class="divider" />
 
     <!-- Skills -->
-    <section class="mb-14">
-      <p class="section-title">Technical Skills</p>
-      <div class="grid sm:grid-cols-2 gap-4 text-sm">
+    <section class="info-section">
+      <span class="label">Technical Skills</span>
+      <dl class="skill-grid">
         <div>
-          <p class="font-medium text-ink mb-1">Languages</p>
-          <p class="text-muted">Go, Python, C, C++, Rust, JavaScript, SQL</p>
+          <dt>Languages</dt>
+          <dd>Go, Python, C, C++, Rust, JavaScript, SQL</dd>
         </div>
         <div>
-          <p class="font-medium text-ink mb-1">AI / ML Systems</p>
-          <p class="text-muted">Agentic AI orchestration, vLLM, LLM workload hardening, AI-native automation</p>
+          <dt>AI / ML Systems</dt>
+          <dd>Agentic AI orchestration, vLLM, LLM workload hardening, AI-native automation</dd>
         </div>
         <div>
-          <p class="font-medium text-ink mb-1">Container & Cloud-Native</p>
-          <p class="text-muted">Kubernetes, Wolfi, melange, apko, Docker, Kyverno, Falco</p>
+          <dt>Container & Cloud-Native</dt>
+          <dd>Kubernetes, Wolfi, melange, apko, Docker, Kyverno, Falco</dd>
         </div>
         <div>
-          <p class="font-medium text-ink mb-1">Supply Chain Security</p>
-          <p class="text-muted">sigstore/cosign, SBOM, SLSA, FIPS, image signing & verification</p>
+          <dt>Supply Chain Security</dt>
+          <dd>sigstore/cosign, SBOM, SLSA, FIPS, image signing & verification</dd>
         </div>
         <div>
-          <p class="font-medium text-ink mb-1">Tools & CI/CD</p>
-          <p class="text-muted">GitHub Actions, Git, Linux, event-driven workflow automation</p>
+          <dt>Tools & CI/CD</dt>
+          <dd>GitHub Actions, Git, Linux, event-driven automation</dd>
         </div>
-      </div>
+      </dl>
     </section>
 
+    <hr class="divider" />
+
     <!-- Experience -->
-    <section class="mb-14">
-      <p class="section-title">Experience</p>
-      <div class="space-y-10">
+    <section class="info-section">
+      <span class="label">Experience</span>
+      <div class="exp-list">
         {experience.map(company => (
-          <div>
-            <div class="flex items-center gap-2 mb-4">
-              <a
-                href={company.companyUrl}
-                target="_blank"
-                rel="noopener"
-                class="font-semibold text-ink hover:text-accent transition-colors text-sm"
-              >
+          <div class="company-block">
+            <div class="company-head">
+              <a class="a-link company-name" href={company.companyUrl} target="_blank" rel="noopener">
                 {company.company}
               </a>
-              <span class="text-muted text-xs">· {company.location}</span>
+              <span class="company-loc">{company.location}</span>
             </div>
-            <div class="space-y-6 pl-4 border-l border-border">
+            <div class="role-list">
               {company.roles.map(role => (
-                <div>
-                  <div class="flex items-start justify-between gap-4 mb-2">
-                    <p class="text-sm font-medium text-ink">{role.title}</p>
-                    <p class="text-xs text-muted flex-shrink-0">{role.start} – {role.end}</p>
+                <div class="role-block">
+                  <div class="role-head">
+                    <p class="role-title">{role.title}</p>
+                    <span class="role-dates">{role.start} – {role.end}</span>
                   </div>
-                  <ul class="space-y-1">
-                    {role.bullets.map(bullet => (
-                      <li class="text-sm text-muted leading-relaxed flex gap-2">
-                        <span class="text-border mt-1.5">·</span>
-                        <span>{bullet}</span>
-                      </li>
+                  <ul class="bullet-list">
+                    {role.bullets.map(b => (
+                      <li>{b}</li>
                     ))}
                   </ul>
                 </div>
@@ -92,47 +97,321 @@ import { experience } from '../data/experience';
       </div>
     </section>
 
+    <hr class="divider" />
+
     <!-- Publications -->
-    <section class="mb-14">
-      <p class="section-title">Publications</p>
+    <section class="info-section">
+      <span class="label">Publications</span>
       <a
         href="https://link.springer.com/chapter/10.1007/978-981-19-5292-0_29"
         target="_blank"
         rel="noopener"
-        class="card block group"
+        class="pub-card hover-row"
       >
-        <p class="text-sm font-semibold text-ink group-hover:text-accent transition-colors mb-1">
-          A Survey on Kubernetes Policy Report CRD Kube-Bench Adapter
-        </p>
-        <p class="text-xs text-muted">
-          Advances in Data and Information Sciences. Lecture Notes in Networks and Systems, vol 522. Springer, Singapore, 2022.
-        </p>
+        <div>
+          <p class="pub-title">A Survey on Kubernetes Policy Report CRD Kube-Bench Adapter</p>
+          <p class="pub-venue">
+            Advances in Data and Information Sciences · Lecture Notes in Networks and Systems,
+            vol 522 · Springer, Singapore, 2022
+          </p>
+        </div>
+        <span class="ext">↗</span>
       </a>
     </section>
 
+    <hr class="divider" />
+
     <!-- Education -->
-    <section class="mb-14">
-      <p class="section-title">Education</p>
-      <div class="flex items-start justify-between gap-4">
+    <section class="info-section">
+      <span class="label">Education</span>
+      <div class="edu-row">
         <div>
-          <p class="text-sm font-semibold text-ink">JSS Academy of Technical Education</p>
-          <p class="text-sm text-muted">B.Tech in Computer Science Engineering · CGPA 8.8</p>
+          <p class="edu-school">JSS Academy of Technical Education</p>
+          <p class="edu-degree">B.Tech · Computer Science Engineering · CGPA 8.8</p>
         </div>
-        <p class="text-xs text-muted flex-shrink-0">2018 – 2022</p>
+        <span class="edu-dates">2018 – 2022</span>
       </div>
     </section>
 
+    <hr class="divider" />
+
     <!-- Recognition -->
-    <section>
-      <p class="section-title">Recognition</p>
-      <ul class="space-y-2 text-sm text-muted">
-        <li class="flex gap-2"><span class="text-border">·</span><span><strong class="text-ink">Tech Lead, Delivery India (Chainguard, 2025–2026)</strong> — Led a 9-person engineering team</span></li>
-        <li class="flex gap-2"><span class="text-border">·</span><span><strong class="text-ink">Intern Program Lead (Chainguard, 2024–2025)</strong> — Mentored 3 interns and multiple engineers</span></li>
-        <li class="flex gap-2"><span class="text-border">·</span><span><strong class="text-ink">LFX Mentor, Fall 2021</strong> — CNCF Kubernetes Policy Working Group</span></li>
-        <li class="flex gap-2"><span class="text-border">·</span><span><strong class="text-ink">Winner, Smart India Hackathon 2020</strong> — Accessibility solution for the physically disabled</span></li>
-        <li class="flex gap-2"><span class="text-border">·</span><span><strong class="text-ink">Two-time Google Summer of Code alum</strong> — CNCF (2021), RTEMS (2020)</span></li>
+    <section class="info-section" style="padding-bottom: 0;">
+      <span class="label">Recognition</span>
+      <ul class="rec-list">
+        <li><strong>Tech Lead, Delivery India</strong> — Chainguard (2025–2026) · Led a 9-person engineering team</li>
+        <li><strong>Intern Program Lead</strong> — Chainguard (2024–2025) · Mentored 3 interns and multiple engineers</li>
+        <li><strong>LFX Mentor, Fall 2021</strong> — CNCF Kubernetes Policy Working Group</li>
+        <li><strong>Winner, Smart India Hackathon 2020</strong> — Accessibility solution for the physically disabled</li>
+        <li><strong>Two-time Google Summer of Code alum</strong> — CNCF (2021), RTEMS (2020)</li>
       </ul>
     </section>
-
   </div>
 </Base>
+
+<style>
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .page-header {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .bio-section {
+    padding: 2.5rem 0;
+    max-width: 65ch;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .bio-section p {
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .bio-section strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    border: none;
+    margin: 0;
+  }
+
+  .info-section {
+    padding: 2.5rem 0;
+  }
+
+  /* Skills */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 2rem;
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 560px) {
+    .skill-grid { grid-template-columns: 1fr; }
+  }
+
+  dt {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  dd {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Experience */
+  .exp-list {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .company-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .company-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .company-loc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+  }
+
+  .role-list {
+    padding-left: 1rem;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .role-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .role-title {
+    font-size: 0.8375rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .role-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .bullet-list li {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .bullet-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--text-faint);
+  }
+
+  /* Publications */
+  .pub-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.1rem 0.75rem 1.1rem 0;
+    text-decoration: none;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 1.25rem -0.875rem 0;
+  }
+
+  .pub-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0 0 0.35rem;
+    line-height: 1.45;
+    transition: color 0.15s;
+  }
+
+  .pub-card:hover .pub-title { color: var(--accent); }
+
+  .pub-venue {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-faint);
+    margin: 0;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+  }
+
+  .ext {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    transition: color 0.15s;
+  }
+  .pub-card:hover .ext { color: var(--accent); }
+
+  /* Education */
+  .edu-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .edu-school {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0 0 0.3rem;
+  }
+
+  .edu-degree {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .edu-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    padding-top: 0.2rem;
+  }
+
+  /* Recognition */
+  .rec-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .rec-list li {
+    font-size: 0.8375rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .rec-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--text-faint);
+  }
+
+  .rec-list strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+</style>
