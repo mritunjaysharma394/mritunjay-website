@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import { projects } from '../data/projects';
+
+const featured = projects.filter(p => p.featured);
+const rest = projects.filter(p => !p.featured);
+---
+
+<Base
+  title="Projects — Mritunjay Sharma"
+  description="AI systems, container security tools, and open source projects."
+>
+  <div class="max-w-3xl mx-auto px-6 py-14">
+    <div class="mb-12">
+      <h1 class="text-2xl font-bold text-ink mb-2">Projects</h1>
+      <p class="text-muted text-sm">
+        Work ranging from agentic AI orchestration to container security. More at
+        <a href="https://github.com/mritunjaysharma394" target="_blank" rel="noopener" class="link">
+          github.com/mritunjaysharma394
+        </a>.
+      </p>
+    </div>
+
+    <!-- Featured / AI work -->
+    <section class="mb-12">
+      <p class="section-title">Featured</p>
+      <div class="space-y-4">
+        {featured.map(project => (
+          <div class="card">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <h2 class="font-semibold text-ink text-sm">
+                    {(project.github || project.url) ? (
+                      <a
+                        href={project.github ?? project.url}
+                        target="_blank"
+                        rel="noopener"
+                        class="hover:text-accent transition-colors"
+                      >
+                        {project.title}
+                      </a>
+                    ) : project.title}
+                  </h2>
+                </div>
+                <p class="text-sm text-muted leading-relaxed">{project.description}</p>
+                <div class="flex flex-wrap gap-1.5 mt-3 items-center">
+                  {project.tags.map(tag => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                  <div class="ml-auto flex gap-3">
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener" class="text-xs text-muted hover:text-ink transition-colors">
+                        GitHub →
+                      </a>
+                    )}
+                    {project.url && project.url !== project.github && (
+                      <a href={project.url} target="_blank" rel="noopener" class="text-xs text-muted hover:text-ink transition-colors">
+                        Live →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <span class="text-xs text-muted flex-shrink-0">{project.year}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Other OSS work -->
+    <section>
+      <p class="section-title">Open Source</p>
+      <div class="space-y-4">
+        {rest.map(project => (
+          <div class="card">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <h2 class="font-semibold text-ink text-sm mb-1">
+                  {(project.github || project.url) ? (
+                    <a
+                      href={project.github ?? project.url}
+                      target="_blank"
+                      rel="noopener"
+                      class="hover:text-accent transition-colors"
+                    >
+                      {project.title}
+                    </a>
+                  ) : project.title}
+                </h2>
+                <p class="text-sm text-muted leading-relaxed">{project.description}</p>
+                <div class="flex flex-wrap gap-1.5 mt-3 items-center">
+                  {project.tags.map(tag => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                  <div class="ml-auto flex gap-3">
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener" class="text-xs text-muted hover:text-ink transition-colors">
+                        GitHub →
+                      </a>
+                    )}
+                    {project.url && project.url !== project.github && (
+                      <a href={project.url} target="_blank" rel="noopener" class="text-xs text-muted hover:text-ink transition-colors">
+                        Live →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <span class="text-xs text-muted flex-shrink-0">{project.year}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

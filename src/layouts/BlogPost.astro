@@ -1,0 +1,45 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  excerpt?: string;
+  tags?: string[];
+}
+
+const { title, date, excerpt, tags } = Astro.props;
+
+const formatted = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Base title={`${title} — Mritunjay Sharma`} description={excerpt}>
+  <article class="max-w-3xl mx-auto px-6 py-14">
+    <div class="mb-10">
+      <a href="/blog" class="text-xs text-muted hover:text-ink transition-colors flex items-center gap-1 mb-8">
+        ← All writing
+      </a>
+      <h1 class="text-2xl font-bold text-ink leading-snug mb-3">{title}</h1>
+      <div class="flex items-center gap-3 flex-wrap">
+        <time datetime={date.toISOString()} class="text-sm text-muted">{formatted}</time>
+        {tags?.map(tag => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="prose prose-gray max-w-none
+      prose-headings:font-semibold prose-headings:text-ink
+      prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+      prose-code:font-mono prose-code:text-sm
+      prose-pre:bg-gray-950 prose-pre:text-gray-100
+      prose-img:rounded-lg
+      prose-blockquote:border-accent prose-blockquote:text-muted">
+      <slot />
+    </div>
+  </article>
+</Base>

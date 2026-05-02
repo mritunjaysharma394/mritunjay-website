@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import { talks } from '../data/talks';
+
+const talksByYear = talks.reduce((acc, talk) => {
+  if (!acc[talk.year]) acc[talk.year] = [];
+  acc[talk.year].push(talk);
+  return acc;
+}, {} as Record<string, typeof talks>);
+
+const years = Object.keys(talksByYear).sort((a, b) => Number(b) - Number(a));
+
+const typeLabel: Record<string, string> = {
+  keynote: 'Keynote',
+  conference: 'Talk',
+  panel: 'Panel',
+  workshop: 'Workshop',
+};
+---
+
+<Base
+  title="Talks — Mritunjay Sharma"
+  description="Conference talks and keynotes at KubeCon, Cloud Native SecurityCon, Open Source Summit, and more."
+>
+  <div class="max-w-3xl mx-auto px-6 py-14">
+    <div class="mb-12">
+      <h1 class="text-2xl font-bold text-ink mb-2">Talks</h1>
+      <p class="text-muted text-sm">
+        8 talks across KubeCon, Cloud Native SecurityCon, Open Source Summit, and Wasm Day — covering container security, supply chain integrity, Kubernetes policy, and open source onboarding.
+      </p>
+    </div>
+
+    <div class="space-y-10">
+      {years.map(year => (
+        <section>
+          <p class="section-title">{year}</p>
+          <div class="space-y-4">
+            {talksByYear[year].map(talk => (
+              <a
+                href={talk.url}
+                target="_blank"
+                rel="noopener"
+                class="card flex items-start justify-between gap-4 group block"
+              >
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    {talk.type !== 'conference' && (
+                      <span class="text-xs font-semibold text-accent uppercase tracking-wide">
+                        {typeLabel[talk.type]}
+                      </span>
+                    )}
+                    <h2 class="text-sm font-semibold text-ink group-hover:text-accent transition-colors leading-snug">
+                      {talk.title}
+                    </h2>
+                  </div>
+                  <p class="text-xs text-muted">{talk.event}</p>
+                </div>
+                <span class="text-xs text-muted flex-shrink-0 mt-0.5">↗</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Base>

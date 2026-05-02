@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Base
+  title="Writing — Mritunjay Sharma"
+  description="Technical writing on cloud-native security, Kubernetes, open source, and AI systems."
+>
+  <div class="max-w-3xl mx-auto px-6 py-14">
+    <div class="mb-12">
+      <h1 class="text-2xl font-bold text-ink mb-2">Writing</h1>
+      <p class="text-muted text-sm">
+        Notes on cloud-native security, Kubernetes, open source, and AI. More to come as I move deeper into AI safety.
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      {posts.map(post => (
+        <article>
+          <a href={`/blog/${post.slug}`} class="group block">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h2 class="font-semibold text-ink group-hover:text-accent transition-colors leading-snug mb-1">
+                  {post.data.title}
+                </h2>
+                {post.data.excerpt && (
+                  <p class="text-sm text-muted leading-relaxed">{post.data.excerpt}</p>
+                )}
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-1.5 mt-2">
+                    {post.data.tags.map(tag => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <time
+                datetime={post.data.date.toISOString()}
+                class="text-xs text-muted flex-shrink-0 mt-0.5"
+              >
+                {post.data.date.toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
+              </time>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</Base>
