@@ -40,6 +40,7 @@ export const projects: Project[] = [
       'Scaled Chainguard\'s secure container image catalog from fewer than 50 to 500+ images in 14 months, including Node.js FIPS, Python FIPS, and Keycloak. The catalog drove 7x ARR growth to $40M with 150+ enterprise customers.',
     tags: ['Container Security', 'FIPS', 'Wolfi', 'Supply Chain'],
     url: 'https://chainguard.dev',
+    featured: true,
     year: '2023',
   },
   {
