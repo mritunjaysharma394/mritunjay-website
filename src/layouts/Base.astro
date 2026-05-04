@@ -12,10 +12,11 @@ interface Props {
 const {
   title,
   description = 'Senior Software Engineer at the intersection of AI systems and container security. KubeCon speaker, CNCF contributor, two-time GSoC alum.',
-  ogImage = '/avatar.png',
+  ogImage,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = ogImage ?? new URL('/avatar.png', Astro.site).href;
 ---
 
 <!doctype html>
@@ -25,6 +26,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/avatar.png" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" type="application/rss+xml" title="Mritunjay Sharma — Writing" href="/rss.xml" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -33,13 +35,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:image" content={ogImageURL} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@mritunjay394" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Runs before paint — prevents flash of wrong theme -->
     <script is:inline>
