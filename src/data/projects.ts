@@ -28,9 +28,18 @@ export const projects: Project[] = [
   {
     title: 'llmwiki',
     description:
-      'A Go CLI implementing Andrej Karpathy\'s LLM Wiki concept — an AI-powered knowledge tool that learns and organizes information using large language models.',
-    tags: ['Go', 'LLM', 'CLI', 'AI'],
+      'A Go CLI that ingests sources (files, URLs, repos, PDFs, RSS/Atom feeds) and synthesizes them into a persistent, evidence-validated Markdown wiki using LLMs. Every page ships with byte-exact source quotes — hallucinated pages are dropped before hitting disk. Obsidian-native output with MCP server for Claude Code integration.',
+    tags: ['Go', 'LLM', 'CLI', 'AI', 'MCP'],
     github: 'https://github.com/mritunjaysharma394/llmwiki',
+    featured: true,
+    year: '2026',
+  },
+  {
+    title: 'llmwatcher',
+    description:
+      'A Claude Code PreToolUse hook that intercepts Edit/Write calls and surfaces a focused permission prompt when AI-suggested code contains secrets, hardcoded credentials, disabled TLS verification, or wildcard CORS. A tripwire against rubber-stamping AI edits — catches the small set of mistakes you\'d most regret committing.',
+    tags: ['Python', 'Security', 'Claude Code', 'AI Safety'],
+    github: 'https://github.com/mritunjaysharma394/llmwatcher',
     featured: true,
     year: '2026',
   },
